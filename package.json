@@ -1,0 +1,24 @@
+{
+  "dependencies": {
+    "express": "^5.1.0",
+    "nodemon": "^3.1.10",
+    "sequelize": "^6.37.7",
+    "sqlite": "^5.1.1"
+  },
+  "name": "user-portfolio",
+  "version": "1.0.0",
+  "description": "App where users can register/login and edit their portfolio page.",
+  "main": "app.js",
+  "devDependencies": {},
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js"
+  },
+  "keywords": [
+    "Portfolio",
+    "userLogin",
+    "userRegister"
+  ],
+  "author": "João Victor Graciolli Ramos",
+  "license": "MIT"
+}
