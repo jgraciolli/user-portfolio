@@ -1,5 +1,6 @@
 const express = require('express')
 const app = express()
+const path = require('path')
 const db = require('./db/connection')
 const User = require('./models/user')
 const PORT = 3000
@@ -16,10 +17,11 @@ db.authenticate()
     })
     .catch(err => console.log(`Unsuccessfull db connection -> ${err}.`))
 
-app.set('views', __dirname + '/views')
+app.set('views', path.join(__dirname, 'views/authentication'))
 app.engine('html', require('ejs').renderFile)
 app.set('view engine', 'html')
 
 app.get('/', (req, res) => {
-    
+    console.log('Rendered main page!')
+    res.render('login.html')
 })
