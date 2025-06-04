@@ -3,20 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User portfolio - login</title>
-    <link rel="stylesheet" href="/styles/css/style.css">
+    <title>User Portfolio - Login</title>
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
     <header>
-        <h1>Welcome to your portoflio app!</h1>    
-        <h2>Please login with your account to access your portfolio.</h2>
-    </header>    
-    <div class="login-container">
-        <input type="text" name="login" id="login-field"> <br>
-        <input type="text" name="password" id="password-field"> <br>
-        <button id="login-button">Login</button>
+        <h1>Welcome to your portfolio app!</h1>
+        <h2>Please log in with your account to access your portfolio.</h2>
+    </header>
+
+    <main class="login-container">
+        <form action="/login" method="POST">
+            <label for="login-field">Username</label>
+            <input type="text" name="login" id="login-field" required>
+
+            <label for="password-field">Password</label>
+            <input type="password" name="password" id="password-field" required>
+
+            <button type="submit" id="login-button">Login</button>
+        </form>
         <p class="register-msg">Don't have an account? Register <a href="/register">here.</a></p>
-    </div>
-    <script src="app.js"></script>
+    </main>
+
+    <script src="/app.js"></script>
 </body>
 </html>
