@@ -1,7 +1,5 @@
-const { Sequelize } = require('sequelize')
-const db = require('../db/connection')
-
-
+import { Sequelize } from 'sequelize'
+import db from '../db/connection.js'
 
 const User = db.define('User', {
     login_name: {
@@ -30,4 +28,4 @@ const User = db.define('User', {
     }
 })
 
-module.exports = User;
+export default User

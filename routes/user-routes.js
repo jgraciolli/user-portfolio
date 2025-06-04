@@ -1,6 +1,7 @@
-const express = require('express')
+import express from 'express'
+import User from '../models/user.js'
+
 const router = express.Router()
-const User = require('../models/user')
 
 router.post('/register/add', (req, res) => {
     let {login_name, email, password, name, surname, age, skills, photo_path} = req.body
