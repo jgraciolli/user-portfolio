@@ -1,9 +1,10 @@
 import express from 'express'
 import db from './db/connection.js'
-import User from './models/user.js'
 import path from 'path'
 import { fileURLToPath } from 'url';
 import ejs from 'ejs'
+import bodyParser from 'body-parser';
+import authRouter from './routes/authentication.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -25,18 +26,12 @@ db.authenticate()
 // here i set the static files default folder
 app.use(express.static(path.join(__dirname, 'styles')));
 
-console.log(path.join(__dirname, 'styles'))
+// setting the body-parser tool for handling req.body
+app.use(bodyParser.urlencoded({ extended: false }))
 
 // setting express view engine
 app.set('views', path.join(__dirname, 'views/authentication'))
 app.engine('html', ejs.renderFile)
 app.set('view engine', 'html')
 
-// main page
-app.get('/login', (req, res) => {
-    res.render('login')
-})
-
-app.get('/register', (req, res) => {
-    res.render('register')
-})
+app.use('/user', authRouter)

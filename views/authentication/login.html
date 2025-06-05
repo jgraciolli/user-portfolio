@@ -14,15 +14,15 @@
 
     <main class="login-container">
         <form action="/login" method="POST">
-            <label for="login-field">Username</label>
-            <input type="text" name="login" id="login-field" required>
+            <label for="login-field">Login</label>
+            <input type="text" name="login" id="login-field" placeholder="Enter your email or username" required>
 
             <label for="password-field">Password</label>
-            <input type="password" name="password" id="password-field" required>
+            <input type="password" name="password" id="password-field" placeholder="Enter your password" required>
 
             <button type="submit" id="login-button">Login</button>
         </form>
-        <p class="register-msg">Don't have an account? Register <a href="/register">here.</a></p>
+        <p class="register-msg">Don't have an account? Register <a href="/user/register">here.</a></p>
     </main>
 
     <script src="/app.js"></script>
