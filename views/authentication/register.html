@@ -13,44 +13,21 @@
   </header>
 
   <main class="register-container">
-    <form action="/register" method="POST" class="form-grid">
-      <div class="form-group">
-        <label for="name-field">First Name</label>
-        <input type="text" name="name" id="name-field" required />
-      </div>
+    <form action="/user/register" method="POST" class="register-form">
+      <label for="username-field">Username</label>
+      <input type="text" name="username" id="username-field" required />
 
-      <div class="form-group">
-        <label for="surname-field">Surname</label>
-        <input type="text" name="surname" id="surname-field" required />
-      </div>
+      <label for="email-field">Email</label>
+      <input type="email" name="email" id="email-field" required />
 
-      <div class="form-group">
-        <label for="age-field">Age</label>
-        <input type="number" name="age" id="age-field" min="1" max="120" required />
-      </div>
+      <label for="password-field">Password</label>
+      <input type="password" name="password" id="password-field" required />
 
-      <div class="form-group">
-        <label for="username-field">Username</label>
-        <input type="text" name="username" id="username-field" required />
-      </div>
-
-      <div class="form-group">
-        <label for="email-field">Email</label>
-        <input type="email" name="email" id="email-field" required />
-      </div>
-
-      <div class="form-group">
-        <label for="password-field">Password</label>
-        <input type="password" name="password" id="password-field" required />
-      </div>
-
-      <div class="form-group full-width">
-        <button type="submit" id="register-button">Register</button>
-      </div>
+      <button type="submit" id="register-button">Register</button>
     </form>
 
-    <p class="login-msg">
-      Already have an account? <a href="/user/login">Log in here.</a>
+    <p class="redirect-msg">
+      Already have an account? <a href="/auth/login">Log in here.</a>
     </p>
   </main>
 

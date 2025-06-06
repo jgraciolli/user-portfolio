@@ -5,7 +5,9 @@ import { fileURLToPath } from 'url';
 import ejs from 'ejs'
 import bodyParser from 'body-parser';
 import authRouter from './routes/authentication.js';
+import portfolioRouter from './routes/portfolio.js';
 
+// setting __dirname manually since I chose to use EcmaScript6 'import and export' and not default 'require' from node.js
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
@@ -30,8 +32,15 @@ app.use(express.static(path.join(__dirname, 'styles')));
 app.use(bodyParser.urlencoded({ extended: false }))
 
 // setting express view engine
-app.set('views', path.join(__dirname, 'views/authentication'))
+app.set('views', path.join(__dirname, 'views'))
 app.engine('html', ejs.renderFile)
 app.set('view engine', 'html')
 
-app.use('/user', authRouter)
+// importing the authentication router for login and register purposes
+app.use('/auth', authRouter)
+
+app.use('/portfolio', portfolioRouter)
+
+app.get('/', (req, res) => {
+    res.render('/main/home')
+})

@@ -5,11 +5,11 @@ import { isValidLogin } from '../public/util.js'
 const authRouter = express.Router()
 
 authRouter.get('/login', (req, res) => {
-    res.render('login')
+    res.render('authentication/login')
 })
 
 authRouter.get('/register', (req, res) => {
-    res.render('register')
+    res.render('authentication/register')
 })
 
 authRouter.post('/login', (req, res) => {
@@ -32,14 +32,24 @@ authRouter.post('/login', (req, res) => {
         where: loginSearch
     })
     .then((user) => {
-        if (user)
-            res.send(user)
+        console.log('the user goes -> ', user)
+        if (user) {
+            const userId = user.id
+            res
+            .status(200)            
+            .send('Succesfully logged in!')
+            .redirect('/portfolio/${user.login_name}')
+        }            
         else {
-            res.status(400).send('No user found for these credentials.')
+            res
+            .status(400)
+            .send('No user found for these credentials.')
         }
     })
-    .catch((err) => {        
-        res.status(400).send(`An error occurred during the login: ${err.message}.`)
+    .catch((err) => {       
+        res
+        .status(400)       
+        .send(`An error occurred during the login: ${err.message}.`)        
     })
 })
 
@@ -51,7 +61,7 @@ authRouter.post('/register', (req, res) => {
         email,
         password        
     })
-    .then(() => res.redirect('/portfolio'))
+    .then(() => res.redirect('/login'))
     .catch(err => console.log('An error occurred when creating new user -> ', err))
 })
 
