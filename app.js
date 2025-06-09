@@ -42,5 +42,5 @@ app.use('/auth', authRouter)
 app.use('/portfolio', portfolioRouter)
 
 app.get('/', (req, res) => {
-    res.render('/main/home')
+    res.render('main/home')
 })

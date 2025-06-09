@@ -1,11 +1,18 @@
-export const isValidLogin = (value) => {
-    const email = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
-    const userName = /^[a-zA-Z0-9_]{3,20}$/;
+const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
+const userNameRegex = /^[a-zA-Z0-9_]{3,20}$/;
 
-    if (email.test(value))
+export const isValidLogin = (value) => {
+    if (emailRegex.test(value))
         return 'email'
-    else if (userName.test(value))
+    else if (userNameRegex.test(value))
         return 'login_name'
     else
-        return 'invalid'
+        return null
 };
+
+export const validateRegister = (username, email, password) => {
+    if (!userNameRegex.test(username) || !emailRegex.test(email) || password.length < 6)
+        return null
+
+    return 'valid'
+}
