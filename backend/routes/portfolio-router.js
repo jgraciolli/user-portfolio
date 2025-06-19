@@ -1,6 +1,5 @@
 import express from 'express'
 import User from '../models/user.js'
-import { where } from 'sequelize'
 
 const portfolioRouter = express.Router()
 
@@ -23,7 +22,7 @@ portfolioRouter.get('/:userId', async (req, res) => {
         if (!user)
             res.status(400).send(`No user found for id: ${userId}`)
 
-        res.status(200).send(user).render('main/portfolio')
+        res.status(200).send(user)
     } catch (err) {
         res.status(400).send(`Error when redirecting to portfolio: ${err.message}`)
         console.log(`Error when redirecting to portfolio: ${err.message}`)
@@ -65,7 +64,6 @@ portfolioRouter.patch('/:userId', async (req, res) => {
         console.log(`An error occurred when updating user data: ${err}.`)
         res.status(400).send(`An error occurred when updating user data: ${err}.`)       
     }
-    
 })
 
 export default portfolioRouter

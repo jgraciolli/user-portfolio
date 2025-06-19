@@ -3,27 +3,9 @@ import User from '../models/user.js'
 import { isValidLogin, validateRegister } from '../public/util.js'
 import { Op } from 'sequelize'
 
-const authRouter = express.Router()
+const router = express.Router()
 
-authRouter.get('/login', (req, res) => {
-    try {
-        res.status(200).render('authentication/login')    
-    } catch (err) {
-        res.status(400).send(`Error when redirecting to login page: ${err.message}`)
-        console.log(`Error when redirecting to login page: ${err.message}`)   
-    }    
-})
-
-authRouter.get('/register', (req, res) => { 
-    try {
-        res.status(200).render('authentication/register')    
-    } catch (err) {
-        res.status(400).send(`Error when redirecting to register page: ${err.message}`)
-        console.log(`Error when redirecting to register page: ${err.message}`)   
-    }
-})
-
-authRouter.post('/login', async (req, res) => {
+router.post('/login', async (req, res) => {
     if (!req.body)
         return res.status(400).send('Missing request body.')
 
@@ -54,7 +36,7 @@ authRouter.post('/login', async (req, res) => {
         if (!user)
             return res.status(400).send(`No user found for these credentials.`)
   
-        res.status(200).redirect(`/portfolio/${user.id}`)
+        res.status(200).send(user)
 
     } catch (err) {
         res.status(400).send(`Error during login: ${err.message}`)
@@ -62,7 +44,7 @@ authRouter.post('/login', async (req, res) => {
     }    
 })
 
-authRouter.post('/register', async (req, res) => {
+router.post('/register', async (req, res) => {
     if (!req.body)        
         return res.status(400).send('Missing request body.')
 
@@ -95,7 +77,7 @@ authRouter.post('/register', async (req, res) => {
             email: email,
             password: password
         })
-        return res.status(201).redirect('/auth/login')
+        return res.status(201).send('OK')
       
     } catch (err) {
         console.log(`Error during registration: ${err.message}`)
@@ -103,4 +85,4 @@ authRouter.post('/register', async (req, res) => {
     }
 })
 
-export default authRouter
+export default router

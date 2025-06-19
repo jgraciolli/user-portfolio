@@ -1,11 +1,10 @@
 import express from 'express'
 import db from './db/connection.js'
 import path from 'path'
-import { fileURLToPath } from 'url';
-import ejs from 'ejs'
-import bodyParser from 'body-parser';
-import authRouter from './routes/authentication.js';
-import portfolioRouter from './routes/portfolio.js';
+import { fileURLToPath } from 'url'
+import bodyParser from 'body-parser'
+import router from './routes/router.js'
+import portfolioRouter from './routes/portfolio-router.js'
 
 // setting __dirname manually since I chose to use EcmaScript6 'import and export' and not default 'require' from node.js
 const __filename = fileURLToPath(import.meta.url);
@@ -31,16 +30,6 @@ app.use(express.static(path.join(__dirname, 'styles')));
 // setting the body-parser tool for handling req.body
 app.use(bodyParser.urlencoded({ extended: false }))
 
-// setting express view engine
-app.set('views', path.join(__dirname, 'views'))
-app.engine('html', ejs.renderFile)
-app.set('view engine', 'html')
-
-// importing the authentication router for login and register purposes
-app.use('/auth', authRouter)
-
+// importing routers
+app.use('/', router)
 app.use('/portfolio', portfolioRouter)
-
-app.get('/', (req, res) => {
-    res.render('main/home')
-})
