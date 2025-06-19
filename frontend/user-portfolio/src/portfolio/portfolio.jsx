@@ -5,22 +5,22 @@ const Portfolio = () => {
                 <h1>Your Portfolio</h1>
                 <h2>Complete or update your profile details below.</h2>
             </header>
-            <main class="portfolio-container">
-                <form action="/user/portfolio" method="POST" enctype="multipart/form-data" class="portfolio-form">
+            <main className="portfolio-container">
+                <form action="/portfolio" method="POST" encType="multipart/form-data" className="portfolio-form">
                 
-                <label for="name-field">First Name</label>
-                <input type="text" name="firstName" id="name-field" required />
+                <label htmlFor="name-field">First Name</label>
+                <input type="text" name="name" id="name-field" required />
 
-                <label for="surname-field">Last Name</label>
-                <input type="text" name="lastName" id="surname-field" required />
+                <label htmlFor="surname-field">Last Name</label>
+                <input type="text" name="surname" id="surname-field" required />
 
-                <label for="age-field">Age</label>
+                <label htmlFor="age-field">Age</label>
                 <input type="number" name="age" id="age-field" min="0" max="120" required />
 
-                <label for="skills-field">Skills</label>
-                <textarea name="skills" id="skills-field" rows="4" placeholder="e.g. JavaScript, Node.js, React..." required></textarea>
+                <label htmlFor="skills-field">Skills</label>
+                <textarea name="skills" id="skills-field" rows="4" placeholder="e.g. Javascript, Node.js, React..." required></textarea>
 
-                <label for="photo-field">Upload Profile Photo</label>
+                <label htmlFor="photo-field">Upload Profile Photo</label>
                 <input type="file" name="profilePhoto" id="photo-field" accept="image/*" />
 
                 <button type="submit" id="save-button">Save Portfolio</button>

@@ -14,7 +14,7 @@ authRouter.get('/login', (req, res) => {
     }    
 })
 
-authRouter.get('/register', (req, res) => {
+authRouter.get('/register', (req, res) => { 
     try {
         res.status(200).render('authentication/register')    
     } catch (err) {

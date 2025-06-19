@@ -15,7 +15,7 @@ const Login = () => {
 
                     <button type="submit" id="login-button">Login</button>
                 </form>
-                <p className="redirect-msg">Don't have an account? Register <a href="/auth/register">here.</a></p>
+                <p className="redirect-msg">Don't have an account? Register <a href="/register">here.</a></p>
             </main>
         </>
     )

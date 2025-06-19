@@ -1,5 +1,4 @@
-
-const Home = () => {
+const Home = () => {    
     return (
     <>
         <header>
