@@ -49,7 +49,7 @@ portfolioRouter.patch('/:userId', async (req, res) => {
         if (!user)
             return res.status(400).send(`No user found for ID: ${userId}.`)
 
-        const updatedUser = await User.update({
+        await User.update({
             name: newName,
             surname: newSurname,
             age: newAge,
@@ -59,9 +59,6 @@ portfolioRouter.patch('/:userId', async (req, res) => {
         {
             where: { id: userId }
         })
-
-        if (!updatedUser)
-            return res.status(400).send('Could not update portfolio.')
         
         res.status(200).send('Portfolio succesfully updated!')
     } catch (err) {

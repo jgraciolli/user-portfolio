@@ -11,8 +11,12 @@ export const isValidLogin = (value) => {
 };
 
 export const validateRegister = (username, email, password) => {
-    if (!userNameRegex.test(username) || !emailRegex.test(email) || password.length < 6)
-        return null
+    if (!userNameRegex.test(username))
+        return 'Invalid username, must contain only letters or numbers.'
+    else if (!emailRegex.test(email))
+        return 'Invalid email address.'
+    if (password.length < 6)
+        return 'Password must contain at least 6 characters.'
 
     return 'valid'
 }

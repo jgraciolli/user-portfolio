@@ -66,16 +66,17 @@ authRouter.post('/register', async (req, res) => {
     if (!req.body)        
         return res.status(400).send('Missing request body.')
 
-    const {login_name, email, password} = req.body
+    const { login_name, email, password } = req.body
+
 
     if (!login_name || !email || !password)
         return res.status(400).send('Missing required fields.')
 
-    const validRegister = validateRegister(login_name, email, password)
+    const validateRegisterMsg = validateRegister(login_name, email, password)
         
-    if (!validRegister)
-        return res.status(400).send(`Invalid register credentials.`)
-       
+    if (validateRegisterMsg != 'valid')
+        return res.status(400).send(validateRegisterMsg)    
+
     try {
         const existingUser = await User.findOne({
             where: {
@@ -87,10 +88,14 @@ authRouter.post('/register', async (req, res) => {
         })
 
         if (existingUser)
-            return res.status(409).send('An account with this email or username already exists.')        
+            return res.status(409).send('An account with this email or username already exists.')       
 
-        await User.create({ login_name, email, password })
-        res.status(201).redirect('/auth/login')
+        await User.create({
+            login_name: login_name,
+            email: email,
+            password: password
+        })
+        return res.status(201).redirect('/auth/login')
       
     } catch (err) {
         console.log(`Error during registration: ${err.message}`)
